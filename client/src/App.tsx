@@ -8,12 +8,20 @@ import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/home-page";
 import AuthPage from "@/pages/auth-page";
 import DashboardPage from "@/pages/dashboard-page";
+import AboutPage from "@/pages/about-page";
+import FeaturesPage from "@/pages/features-page";
+import DevelopersPage from "@/pages/developers-page";
+import ContactPage from "@/pages/contact-page";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/auth" component={AuthPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/features" component={FeaturesPage} />
+      <Route path="/developers" component={DevelopersPage} />
+      <Route path="/contact" component={ContactPage} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
