@@ -201,9 +201,17 @@ curl -X POST https://api.versa-id.com/v1/authenticate \\
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300"
-                onClick={() => window.location.href = "/api-key"}
+                onClick={() => {
+                  // Create a direct download link to the API file
+                  const link = document.createElement('a');
+                  link.href = '/versa-id-api.json';
+                  link.download = 'versa-id-api.json';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
               >
-                Get Started
+                Download API
               </Button>
               <Button 
                 size="lg" 
@@ -211,6 +219,13 @@ curl -X POST https://api.versa-id.com/v1/authenticate \\
                 onClick={() => window.location.href = "/documentation"}
               >
                 Read Documentation
+              </Button>
+              <Button
+                size="lg"
+                variant="link"
+                onClick={() => window.location.href = "/api-key"}
+              >
+                Request API Key
               </Button>
             </div>
           </div>

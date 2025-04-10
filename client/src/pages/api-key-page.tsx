@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
-import { KeyRound, Check, Lightbulb } from "lucide-react";
+import { KeyRound, Check, Lightbulb, Download, FileJson } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function ApiKeyPage() {
@@ -196,6 +196,26 @@ export default function ApiKeyPage() {
                     <li>• Access to all VERSA-ID features</li>
                     <li>• Real-time dashboard and analytics</li>
                   </ul>
+                  
+                  <div className="mt-4 pt-4 border-t border-neutral-800">
+                    <Button 
+                      variant="outline" 
+                      className="w-full flex items-center justify-center gap-2"
+                      onClick={() => {
+                        // Create a direct download link to the API file
+                        const link = document.createElement('a');
+                        link.href = '/versa-id-api.json';
+                        link.download = 'versa-id-api.json';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                      }}
+                    >
+                      <FileJson className="h-4 w-4" />
+                      Download API Spec
+                      <Download className="h-4 w-4 ml-1" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
               
