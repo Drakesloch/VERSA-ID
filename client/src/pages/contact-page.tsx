@@ -37,8 +37,8 @@ export default function ContactPage() {
               <p className="text-gray-400">
                 For general inquiries, support, and partnership opportunities
               </p>
-              <a href="mailto:info@versa-id.com" className="text-primary mt-2 hover:underline">
-                info@versa-id.com
+              <a href="mailto:shawnniilomoengmann@gmail.com" className="text-primary mt-2 hover:underline">
+                shawnniilomoengmann@gmail.com
               </a>
             </div>
             
@@ -63,8 +63,8 @@ export default function ContactPage() {
               <p className="text-gray-400">
                 For urgent matters and direct communication
               </p>
-              <a href="tel:+18005551234" className="text-primary mt-2 hover:underline">
-                +1 (800) 555-1234
+              <a href="tel:+233242586887" className="text-primary mt-2 hover:underline">
+                +233 242 586 887
               </a>
             </div>
           </div>
@@ -77,16 +77,16 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium">Headquarters</h3>
                   <p className="text-sm text-gray-400">
-                    1234 Blockchain Street<br />
-                    San Francisco, CA 94105<br />
-                    United States
+                    Lancaster University Ghana<br />
+                    A&C Square, East Legon<br />
+                    Accra, Ghana
                   </p>
                 </div>
               </div>
               
               <h3 className="font-medium mt-6 mb-2">Office Hours</h3>
               <p className="text-sm text-gray-400">
-                Monday - Friday: 9:00 AM - 6:00 PM PST<br />
+                Monday - Friday: 9:00 AM - 6:00 PM GMT<br />
                 Saturday - Sunday: Closed
               </p>
               
