@@ -4,10 +4,18 @@ import { storage } from "./storage";
 import { setupAuth } from "./auth";
 import { WebSocketServer } from "ws";
 import { log } from "./vite";
+import path from "path";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up authentication routes and middleware
   setupAuth(app);
+  
+  // Route to serve the API JSON file for download
+  app.get("/versa-id-api.json", (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', 'attachment; filename=versa-id-api.json');
+    res.sendFile(path.join(process.cwd(), "client/public/versa-id-api.json"));
+  });
 
   // Create HTTP server
   const httpServer = createServer(app);

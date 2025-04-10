@@ -89,10 +89,11 @@ export function HeroSection() {
                       <Label htmlFor="fullName" className="text-sm font-medium text-gray-400 mb-1">
                         Full Name
                       </Label>
-                      <Input
+                      <input
                         id="fullName"
                         placeholder="Enter your name"
                         className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
+                        style={{ color: 'white', caretColor: 'white' }}
                       />
                     </div>
 
@@ -100,11 +101,12 @@ export function HeroSection() {
                       <Label htmlFor="email" className="text-sm font-medium text-gray-400 mb-1">
                         Email
                       </Label>
-                      <Input
+                      <input
                         id="email"
                         type="email"
                         placeholder="you@example.com"
                         className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
+                        style={{ color: 'white', caretColor: 'white' }}
                       />
                     </div>
 
@@ -112,11 +114,12 @@ export function HeroSection() {
                       <Label htmlFor="password" className="text-sm font-medium text-gray-400 mb-1">
                         Password
                       </Label>
-                      <Input
+                      <input
                         id="password"
                         type="password"
                         placeholder="••••••••"
                         className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
+                        style={{ color: 'white', caretColor: 'white' }}
                       />
                     </div>
 
