@@ -92,7 +92,7 @@ export function HeroSection() {
                       <Input
                         id="fullName"
                         placeholder="Enter your name"
-                        className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
                       />
                     </div>
 
@@ -104,7 +104,7 @@ export function HeroSection() {
                         id="email"
                         type="email"
                         placeholder="you@example.com"
-                        className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
                       />
                     </div>
 
@@ -116,7 +116,7 @@ export function HeroSection() {
                         id="password"
                         type="password"
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-dark-lighter border border-neutral-800 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-white"
                       />
                     </div>
 
@@ -178,7 +178,7 @@ export function HeroSection() {
 
                 <div className="text-center text-sm text-gray-400">
                   Already have an account?{" "}
-                  <Link href="/auth" className="text-primary hover:text-primary-light">
+                  <Link href="/auth?tab=login" className="text-primary hover:text-primary-light">
                     Log In
                   </Link>
                 </div>
