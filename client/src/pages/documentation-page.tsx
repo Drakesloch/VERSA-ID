@@ -176,7 +176,7 @@ def verify_versa_id():
                   <p className="text-gray-300 mb-4">
                     To use VERSA-ID in your application, you'll need to create a developer account and get an API key.
                   </p>
-                  <Button>Register for API Key</Button>
+                  <Button onClick={() => window.location.href = "/api-key"}>Register for API Key</Button>
                 </div>
 
                 <div className="bg-dark-lighter rounded-lg border border-neutral-800 p-6 mb-8">

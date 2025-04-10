@@ -54,8 +54,8 @@ export default function DevelopersPage() {
                 </div>
               </div>
               <div className="mt-8 flex space-x-4">
-                <Button>Get API Key</Button>
-                <Button variant="outline">View Documentation</Button>
+                <Button onClick={() => window.location.href = "/api-key"}>Get API Key</Button>
+                <Button variant="outline" onClick={() => window.location.href = "/documentation"}>View Documentation</Button>
               </div>
             </div>
             
@@ -201,10 +201,15 @@ curl -X POST https://api.versa-id.com/v1/authenticate \\
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300"
+                onClick={() => window.location.href = "/api-key"}
               >
                 Get Started
               </Button>
-              <Button size="lg" variant="outline">
+              <Button 
+                size="lg" 
+                variant="outline"
+                onClick={() => window.location.href = "/documentation"}
+              >
                 Read Documentation
               </Button>
             </div>

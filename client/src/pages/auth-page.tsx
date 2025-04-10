@@ -14,7 +14,16 @@ export default function AuthPage() {
   const [activeTab, setActiveTab] = useState<string>("login");
   const [showWalletConnect, setShowWalletConnect] = useState(false);
   const { user } = useAuth();
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
+
+  // Check for tab param in the URL (e.g., /auth?tab=register)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get('tab');
+    if (tab === 'register' || tab === 'login') {
+      setActiveTab(tab);
+    }
+  }, []);
 
   // If user is already logged in with a wallet connection, redirect to dashboard
   useEffect(() => {

@@ -75,12 +75,12 @@ export function Header() {
             </>
           ) : (
             <>
-              <Link href="/auth">
+              <Link href="/auth?tab=login">
                 <Button variant="secondary" className="hidden md:inline-flex">
                   Log In
                 </Button>
               </Link>
-              <Link href="/auth">
+              <Link href="/auth?tab=register">
                 <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300">
                   Sign Up
                 </Button>
@@ -137,13 +137,22 @@ export function Header() {
                 </button>
               </>
             ) : (
-              <Link
-                href="/auth"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-2 font-medium text-gray-300 hover:text-white transition-colors"
-              >
-                Log In
-              </Link>
+              <>
+                <Link
+                  href="/auth?tab=login"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-2 font-medium text-gray-300 hover:text-white transition-colors"
+                >
+                  Log In
+                </Link>
+                <Link
+                  href="/auth?tab=register"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-2 font-medium text-gray-300 hover:text-white transition-colors"
+                >
+                  Sign Up
+                </Link>
+              </>
             )}
           </div>
         </div>

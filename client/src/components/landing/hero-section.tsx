@@ -46,7 +46,7 @@ export function HeroSection() {
               powered by blockchain technology. Take control of your digital identity.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link href="/auth">
+              <Link href="/auth?tab=register">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300"
@@ -121,10 +121,11 @@ export function HeroSection() {
                     </div>
 
                     <Button
-                      type="submit"
+                      type="button"
                       className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300"
+                      onClick={() => window.location.href = "/auth?tab=register"}
                     >
-                      Continue to Wallet Connection
+                      Continue to Registration
                     </Button>
                   </form>
                 ) : (
