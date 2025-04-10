@@ -18,6 +18,7 @@ export default function DashboardPage() {
   const [copied, setCopied] = useState(false);
   const [otp, setOtp] = useState<string | null>(null);
   const [otpExpiry, setOtpExpiry] = useState<number | null>(null);
+  const [websocketStatus, setWebsocketStatus] = useState<"connecting" | "connected" | "disconnected">("connecting");
 
   // For storing SSO requests
   const [ssoRequests, setSsoRequests] = useState<Array<{
@@ -41,13 +42,34 @@ export default function DashboardPage() {
     
     // Connect to WebSocket if user has a VERSA-ID
     if (user?.versaId) {
+      setWebsocketStatus("connecting");
+      
       connectWebSocket(user.versaId)
         .then(() => {
           console.log("WebSocket connected successfully");
+          setWebsocketStatus("connected");
         })
         .catch(error => {
           console.error("Failed to connect to WebSocket:", error);
+          setWebsocketStatus("disconnected");
         });
+      
+      // Listen for connection status changes
+      const onCloseListener = (event: CloseEvent) => {
+        console.log("WebSocket disconnected in dashboard", event);
+        setWebsocketStatus("disconnected");
+      };
+      
+      const onOpenListener = () => {
+        console.log("WebSocket reconnected in dashboard");
+        setWebsocketStatus("connected");
+      };
+      
+      // Add event listeners to the current WebSocket instance
+      if (typeof window !== "undefined") {
+        window.addEventListener("ws:close", () => setWebsocketStatus("disconnected"));
+        window.addEventListener("ws:open", () => setWebsocketStatus("connected"));
+      }
       
       // Listen for SSO requests
       const unsubscribe = on("sso_request", (data) => {
@@ -59,6 +81,10 @@ export default function DashboardPage() {
       // Clean up on unmount
       return () => {
         unsubscribe();
+        if (typeof window !== "undefined") {
+          window.removeEventListener("ws:close", () => setWebsocketStatus("disconnected"));
+          window.removeEventListener("ws:open", () => setWebsocketStatus("connected"));
+        }
         disconnectWebSocket();
       };
     }
@@ -250,12 +276,38 @@ export default function DashboardPage() {
                 {/* Recent Activities */}
                 <Card className="border-neutral-800 bg-dark-card">
                   <CardHeader>
-                    <CardTitle>Recent Activities</CardTitle>
-                    <CardDescription>
-                      Recent authentication events
-                    </CardDescription>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle>Recent Activities</CardTitle>
+                        <CardDescription>
+                          Recent authentication events
+                        </CardDescription>
+                      </div>
+                      <div className="flex items-center">
+                        <div className={`w-2 h-2 rounded-full mr-2 ${
+                          websocketStatus === "connected" ? "bg-green-500" :
+                          websocketStatus === "connecting" ? "bg-yellow-500" : 
+                          "bg-red-500"
+                        }`}></div>
+                        <span className="text-xs text-gray-400">
+                          {websocketStatus === "connected" ? "Connected" :
+                           websocketStatus === "connecting" ? "Connecting..." : 
+                           "Disconnected"}
+                        </span>
+                      </div>
+                    </div>
                   </CardHeader>
                   <CardContent>
+                    {websocketStatus !== "connected" && (
+                      <Alert className="mb-4" variant="destructive">
+                        <AlertCircle className="h-4 w-4" />
+                        <AlertTitle>Connection Issue</AlertTitle>
+                        <AlertDescription>
+                          Not connected to the notification server. You may not receive real-time authentication requests.
+                          {websocketStatus === "connecting" ? " Attempting to connect..." : " Please refresh the page to try again."}
+                        </AlertDescription>
+                      </Alert>
+                    )}
                     <div className="space-y-4">
                       {ssoRequests.length > 0 ? (
                         ssoRequests.map((request, index) => (
