@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Versa-ID Callback</title>
+</head>
+<body>
+  <h1>Verifying login...</h1>
+  <pre id="result"></pre>
+
+  <script>
+    async function handleCallback() {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token"); // Versa-ID should redirect with ?token=...
+
+      if (!token) {
+        document.getElementById("result").textContent = "No token found.";
+        return;
+      }
+
+      try {
+        const verifyRes = await fetch("http://localhost:3000/v1/userinfo", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        const verifyData = await verifyRes.json();
+
+        if (verifyRes.ok) {
+          document.getElementById("result").textContent = JSON.stringify(verifyData, null, 2);
+        } else {
+          document.getElementById("result").textContent = JSON.stringify(verifyData, null, 2);
+        }
+      } catch (error) {
+        document.getElementById("result").textContent = "Error: " + error.message;
+      }
+    }
+
+    handleCallback();
+  </script>
+</body>
+</html>
